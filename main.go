@@ -11,6 +11,7 @@ func main() {
 	mux := http.NewServeMux()
 	// 设置路由规则
 	mux.HandleFunc("/current_time", sayHello)
+	mux.HandleFunc("/v2/current_time", sayHelloV2)
 
 	// 创建服务器
 	server := &http.Server{
@@ -25,4 +26,8 @@ func main() {
 
 func sayHello(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello, current time: " + time.Now().String()))
+}
+
+func sayHelloV2(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Hello, current time: " + time.Now().Format("2006-01-02 15:04:05")))
 }
